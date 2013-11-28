@@ -6,6 +6,8 @@ tmp
 .history
 dist
 /.idea
+/.cache
+/.target
 /*.iml
 /out
 /.idea_modules
@@ -14,4 +16,3 @@ dist
 /RUNNING_PID
 /.settings
 /project/*-shim.sbt
-/activator-sbt-atmos-akka-shim.sbt

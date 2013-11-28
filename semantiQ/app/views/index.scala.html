@@ -2,21 +2,8 @@
 
 @main("Welcome to Play Framework") {
 
-    <script type='text/javascript' src='@routes.Assets.at("javascripts/index.min.js")'></script>
-    
     <div class="well">
         <h1>@message</h1>
     </div>
-
-	@helper.form(action = routes.FileUpload.upload, 'enctype -> "multipart/form-data") {
-    <input type="file" name="file">
-    <p>
-        <input type="submit">
-    </p>
-	}
-	
-	@helper.textarea(field = myForm("text"), args = 'rows -> 10, 'cols -> 100)
-    
-    <button id="getMessageButton">Get JSON Message</button>
 
 }
