@@ -1,0 +1,17 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+GET     /                           controllers.Application.index()
+GET     /home                       controllers.Application.home()
+GET     /semantiq					controllers.Application.semantiq()
+GET		/aboutus					controllers.Application.aboutus()
+GET		/contact					controllers.Application.contact()
+GET		/privacy					controllers.Application.privacy()
+GET		/terms						controllers.Application.terms()
+POST  	/semantiq/submit           	controllers.Application.textInput()
+POST  	/semantiq/uploadFile		controllers.Application.uploadFile()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /webjars/*file              controllers.WebJarAssets.at(file)
