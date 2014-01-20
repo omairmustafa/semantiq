@@ -2,9 +2,53 @@ package models;
 
 public class Semantics {
 	private String text;
-	private String names = "";
+	private String names;
+	private String summary;
+	private String fleschReadingEaseDiffucultyLevel;
+	private String automatedReadibilityDiffucultyLevel;
+	private String colemanLiauDiffucultyLevel;
+	private String daleChallDiffucultyLevel;
+	private String smogDiffucultyLevel;
 	private int syllableCount, numOfWords, numOfSentences;
-	private double automatedReadibilityIndex, fleschKincaidIndex, colemanLiauIndex, daleChallIndex, sMOGIndex;
+	private double automatedReadibilityIndex, fleschReadingEaseScore, colemanLiauIndex, daleChallIndex, smogIndex;
+	
+	public String getAutomatedReadibilityDiffucultyLevel() {
+		return automatedReadibilityDiffucultyLevel;
+	}
+	public void setAutomatedReadibilityDiffucultyLevel(
+			String automatedReadibilityDiffucultyLevel) {
+		this.automatedReadibilityDiffucultyLevel = automatedReadibilityDiffucultyLevel;
+	}
+	public String getColemanLiauDiffucultyLevel() {
+		return colemanLiauDiffucultyLevel;
+	}
+	public void setColemanLiauDiffucultyLevel(String colemanLiauDiffucultyLevel) {
+		this.colemanLiauDiffucultyLevel = colemanLiauDiffucultyLevel;
+	}
+	public String getDaleChallDiffucultyLevel() {
+		return daleChallDiffucultyLevel;
+	}
+	public void setDaleChallDiffucultyLevel(String daleChallDiffucultyLevel) {
+		this.daleChallDiffucultyLevel = daleChallDiffucultyLevel;
+	}
+	public String getSmogDiffucultyLevel() {
+		return smogDiffucultyLevel;
+	}
+	public void setSmogDiffucultyLevel(String smogDiffucultyLevel) {
+		this.smogDiffucultyLevel = smogDiffucultyLevel;
+	}
+	public String getFleschReadingEaseDiffucultyLevel() {
+		return fleschReadingEaseDiffucultyLevel;
+	}
+	public void setFleschReadingEaseDiffucultyLevel(String fleschReadingEaseDiffucultyLevel) {
+		this.fleschReadingEaseDiffucultyLevel = fleschReadingEaseDiffucultyLevel;
+	}
+	public String getSummary() {
+		return summary;
+	}
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
 	
 	public String getNames() {
 		return names;
@@ -18,11 +62,11 @@ public class Semantics {
 	public void setAutomatedReadibilityIndex(double automatedReadibilityIndex) {
 		this.automatedReadibilityIndex = automatedReadibilityIndex;
 	}
-	public double getFleschKincaidIndex() {
-		return fleschKincaidIndex;
+	public double getFleschReadingEaseScore() {
+		return fleschReadingEaseScore;
 	}
-	public void setFleschKincaidIndex(double fleschKincaidIndex) {
-		this.fleschKincaidIndex = fleschKincaidIndex;
+	public void setFleschReadingEaseScore(double fleschReadingEaseScore) {
+		this.fleschReadingEaseScore = fleschReadingEaseScore;
 	}
 	public double getColemanLiauIndex() {
 		return colemanLiauIndex;
@@ -33,14 +77,14 @@ public class Semantics {
 	public double getDaleChallIndex() {
 		return daleChallIndex;
 	}
-	public void setDaleCchallIndex(double daleChallIndex) {
+	public void setDaleChallIndex(double daleChallIndex) {
 		this.daleChallIndex = daleChallIndex;
 	}
-	public double getsMOGIndex() {
-		return sMOGIndex;
+	public double getSmogIndex() {
+		return smogIndex;
 	}
-	public void setsMOGIndex(double sMOGIndex) {
-		this.sMOGIndex = sMOGIndex;
+	public void setSmogIndex(double smogIndex) {
+		this.smogIndex = smogIndex;
 	}
 	public String getText() {
 		return text;

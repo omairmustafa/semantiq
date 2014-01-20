@@ -9,9 +9,16 @@ public class IndexDaleChall implements IReadabilityIndex {
 	private double rating = 0.0;
 
 	public void calculate(String[] tokens, int totalWords, int totalSentences){
-		double totalDifficultWords = this.removeCommonWords(tokens).size();
 		
-		rating = (0.1579 * ((totalDifficultWords/totalWords) * 100 )) + (0.0496 * ((double)totalWords/totalSentences));
+		double totalDifficultWords = this.removeCommonWords(tokens).size();
+		double percentageDifficultWords = (totalDifficultWords/(double)totalWords) * 100.0;
+		
+		rating = (0.1579 * ((totalDifficultWords/(double)totalWords) * 100 )) + (0.0496 * (totalWords/(double)totalSentences));
+		
+		if (percentageDifficultWords > 5) {
+			rating += 3.6365;
+		}
+		
 	}
 
 	@Override

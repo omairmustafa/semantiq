@@ -6,26 +6,16 @@ import java.util.Scanner;
 
 import opennlp.tools.util.InvalidFormatException;
 
-import models.NameFinder;
 import models.ResultProcessor;
 import models.Semantics;
-import models.SentenceDetector;
-import models.Stopwords;
 import models.TextInput;
 import models.TextSummarizer;
-import models.Tokenizer;
 import models.WordDocReader;
-import play.data.DynamicForm;
 import play.data.Form;
-import play.data.validation.Constraints.Required;
 import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
 import play.mvc.Controller;
 import play.mvc.Result;
-import readibility.EnglishSyllableCounter;
-import readibility.TextProcessor;
-import scala.collection.immutable.Page;
-import views.html.*;
 
 public class Application extends Controller {
 
@@ -96,16 +86,12 @@ public class Application extends Controller {
 		FilePart filePart = body.getFile("filePart");
 
 		if (filePart != null) {
-			String fileName = filePart.getFilename();
+//			String fileName = filePart.getFilename();
 			String contentType = filePart.getContentType();  
 			File file = filePart.getFile();
 
 			StringBuilder fileContents = new StringBuilder((int)file.length());
 			
-			System.out.println(" >>>>>>>>>>>>>>>>>>>>>>>>> " + contentType);
-			
-
-
 
 			String lineSeparator = System.getProperty("line.separator");
 

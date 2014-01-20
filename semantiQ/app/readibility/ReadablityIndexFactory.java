@@ -44,6 +44,7 @@ public class ReadablityIndexFactory {
 		List<String> sentences = processor.getSentences();
 		String[] tokens = processor.getTokens();
 		int syllablesCount = processor.getSyllableCount();
+		
 		this.calculateReadabilityIndex(readablityIndex, text, sentences, tokens, syllablesCount);
 
 		return readablityIndex.getRating();
@@ -57,6 +58,7 @@ public class ReadablityIndexFactory {
 		int totalCharactersInText = text.length();
 	
 		if(readablityIndex instanceof IndexARI) {
+			totalCharactersInText = text.replace(" ", "").length();
 			((IndexARI) readablityIndex).calculate(totalCharactersInText, totalWords, totalSentences);
 
 		}

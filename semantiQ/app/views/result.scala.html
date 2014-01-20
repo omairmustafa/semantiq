@@ -55,14 +55,15 @@
     <div class="nine columns">
       <h3>Results</h3>
       <p>Text: @semantics.getText</p>
+      <p>Summary: @semantics.getSummary</p>
       <p>Number of words: @semantics.getNumOfWords</p>
       <p>Number of sentences: @semantics.getNumOfSentences</p>
       <p>Names: @semantics.getNames</p>
-      <p>ARI: @semantics.getAutomatedReadibilityIndex</p>
-      <p>FKI: @semantics.getFleschKincaidIndex</p>
-      <p>CLI: @semantics.getColemanLiauIndex</p>
-      <p>DCI: @semantics.getDaleChallIndex</p>
-      <p>SMOG: @semantics.getsMOGIndex</p>
+      <p>Automated Readibility Index: @semantics.getAutomatedReadibilityIndex > @semantics.getAutomatedReadibilityDiffucultyLevel</p>
+      <p>Flesch-Kincaid Reading Ease: @semantics.getFleschReadingEaseScore > @semantics.getFleschReadingEaseDiffucultyLevel</p>
+      <p>Coleman-Liau Index: @semantics.getColemanLiauIndex > @semantics.getColemanLiauDiffucultyLevel</p>
+      <p>Dale-Chall Readibility: @semantics.getDaleChallIndex > @semantics.getDaleChallDiffucultyLevel</p>
+      <p>SMOG: @semantics.getSmogIndex > @semantics.getSmogDiffucultyLevel</p>
       
     </div>
 
