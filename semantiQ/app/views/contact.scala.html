@@ -4,158 +4,178 @@
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
 <head>
-  <meta charset="utf-8" />
+<meta charset="utf-8" />
 
-  <!-- Set the viewport width to device width for mobile -->
-  <meta name="viewport" content="width=device-width" />
+<!-- Set the viewport width to device width for mobile -->
+<meta name="viewport" content="width=device-width" />
 
-  <title>semantiQ | Contact Us</title>
+<title>semantiQ | Contact Us</title>
 
-  <!-- Included CSS Files (Uncompressed) -->
-  <!--
+<!-- Included CSS Files (Uncompressed) -->
+<!--
   <link rel="stylesheet" href="stylesheets/foundation.css">
   -->
-  
-  <!-- Included CSS Files (Compressed) -->
-  <link rel="stylesheet" href="@routes.Assets.at("stylesheets/foundation.min.css")">
-  <link rel="stylesheet" href="@routes.Assets.at("stylesheets/app.css")">
 
-  <script src="@routes.Assets.at("javascripts/modernizr.foundation.js")"></script>
+<!-- Included CSS Files (Compressed) -->
+<link rel="stylesheet" href="@routes.Assets.at("./stylesheets/foundation.min.css")">
+<link rel="stylesheet" href="@routes.Assets.at("./stylesheets/app.css")">
+
+<script src="@routes.Assets.at("./javascripts/modernizr.foundation.js")"></script>
 </head>
 <body>
 
-<!-- Header and Nav -->
-  
-  <div class="row">
-    <div class="three columns">
-      <h1><img src="@routes.Assets.at("images/FinalLogo.png")" /></h1>
-    </div>
-    <div class="nine columns">
-      <ul class="nav-bar right">
-        <li><a href="home">Home</a></li>
-        <li><a href="semantiq">semantiQ</a></li>
-        <li><a href="aboutus">About Us</a></li>
-        <li><a href="contact">Contact Us</a></li>
-      </ul>
-    </div>
-  </div>
-  
-  <!-- End Header and Nav -->
+	<!-- Header and Nav -->
+
+	<div class="row">
+		<div class="three columns">
+			<a href="semantiq"><h1>
+					<img src="@routes.Assets.at("./images/FinalLogo.png")" />
+				</h1></a>
+		</div>
+	</div>
+
+	<!-- End Header and Nav -->
 
 
-  <!-- Main Page Content and Sidebar -->
+	<!-- Main Page Content and Sidebar -->
 
-  <div class="row">
+	<div class="row">
 
-    <!-- Contact Details -->
-    <div class="nine columns">
+		<!-- Contact Details -->
+		<div class="nine columns">
 
-      <h3>Get in Touch!</h3>
-      <p>We'd love to hear from you. You can either reach out to us as a whole and one of our awesome team members will get back to you, or if you have a specific question reach out to one of our staff. We love getting email all day <em>all day</em>.</p>
+			<h3 class="h3rule">Get in Touch!</h3>
+			<p class="textrule">
+				We'd love to hear from you. You can either reach out to us as a
+				whole and one of our awesome team members will get back to you, or
+				if you have a specific question reach out to one of our staff. We
+				love getting email <em>all day</em>.
+			</p>
 
-      <dl class="contained tabs">
-        <dd class="active"><a href="#contactForm">Contact Our Company</a></dd>
-        <dd><a href="#contactPeople">Specific Person</a></dd>
-      </dl>
+			<dl class="contained tabs">
+				<dd class="active">
+					<a class="textrule" href="#contactForm">Contact Our Company</a>
+				</dd>
+				<dd>
+					<a class="textrule" href="#contactPeople">Our Team</a>
+				</dd>
+			</dl>
 
-      <ul class="tabs-content contained">
-        <li id="contactFormTab" class="active">
-          <div class="row collapse">
-            <div class="two columns"><label class="inline">Your Name</label></div>
-            <div class="ten columns"><input type="text" id="yourName" placeholder="Omair Mustafa" />
-          </div>
-          <div class="row collapse">
-            <div class="two columns"><label class="inline">Your Email</label></div>
-            <div class="ten columns"><input type="text" id="yourEmail" placeholder="omairmustafa@@live.com" />
-          </div>
-
-          <label>What's up?</label>
-          <textarea rows="4"></textarea>
-
-          <button type="submit" class="radius button">Submit</button>
-        </li>
-
-        <li id="contactPeopleTab">
-          <ul class="block-grid five-up">
-            <li><a href="mailto:omairmustafa@@live.com"><img src="http://m.c.lnkd.licdn.com/media/p/2/005/01f/114/14d64e4.jpg" /><br />Omair Mustafa</a></li>
-            <li><a href="mailto:ammarizvi@@gmail.com"><img src="http://m.c.lnkd.licdn.com/media/p/2/005/024/0ac/20fc852.jpg" /><br />Syed Ali Ammar</a></li>
-            <li><a href="mailto:rizvi_bilal@@hotmail.com"><img src="http://m.c.lnkd.licdn.com/media/p/3/000/28a/1ac/1e12c18.jpg" /><br />Bilal Hasan</a></li>
-            <li><a href="mailto:kashankhaan@@gmail.com"><img src="http://m.c.lnkd.licdn.com/media/p/2/000/083/2ca/196a561.jpg" /><br />Kabir Khan</a></li>
-          </ul>
-        </li>
-      </ul>
-
-    </div>
-
-    <!-- End Contact Details -->
+			<ul class="tabs-content contained">
+				<li id="contactFormTab" class="active">
+					<div class="row collapse">
 
 
-    <!-- Sidebar -->
+						<div class="five columns">
+							<input class="textrule" type="text" id="yourName"
+								placeholder="Name" />
+						</div>
+						<div class="two columns"></div>
+						<div class="five columns">
+							<input class="textrule" type="text" id="yourEmail"
+								placeholder="Email" />
+						</div>
 
-    <div class="three columns">
+						<textarea rows="10" placeholder="Message"></textarea>
 
-      <h5>Map</h5>
+						<button type="submit" class="radius button textrule">Send</button>
+				</li>
 
-      <!-- Clicking this placeholder fires the mapModal Reveal modal -->
-      <p>
-        <a href="" data-reveal-id="mapModal"><img src="@routes.Assets.at("images/map.png")" /></a><br />
-        <a href="" data-reveal-id="mapModal">View Map</a>
-      </p>
+				<li id="contactPeopleTab">
+					<ul class="block-grid five-up">
+						<li><a href="mailto:omairmustafa@@live.com"><img
+								src="http://m.c.lnkd.licdn.com/media/p/2/005/01f/114/14d64e4.jpg" /><br />Omair
+								Mustafa</a></li>
+						<li><a href="mailto:ammarizvi@@gmail.com"><img
+								src="http://m.c.lnkd.licdn.com/media/p/2/005/024/0ac/20fc852.jpg" /><br />Syed
+								Ali Ammar</a></li>
+						<li><a href="mailto:rizvi_bilal@@hotmail.com"><img
+								src="http://m.c.lnkd.licdn.com/media/p/3/000/28a/1ac/1e12c18.jpg" /><br />Bilal
+								Hasan</a></li>
+						<li><a href="mailto:kashankhaan@@gmail.com"><img
+								src="http://m.c.lnkd.licdn.com/media/p/2/000/083/2ca/196a561.jpg" /><br />Kabir
+								Khan</a></li>
+					</ul>
+				</li>
+			</ul>
 
-      <p>
-        TUM Informatik Dept<br />
-        Boltzmannstraße 15, 85748 Garching Munich
-      </p>
+		</div>
 
-    </div>
-
-    <!-- End Sidebar -->
-  </div>
-
-  <!-- End Main Content and Sidebar -->
-
-
-  <!-- Footer -->
-
-   <footer class="row">
-    <div class="twelve columns">
-      <hr />
-      <div class="row">
-        <div class="six columns">
-          <p>&copy; Copyright semantiQ 2013-14</p>
-        </div>
-        <div class="six columns">
-          <ul class="link-list right">
-            <li><a href="aboutus">About Us</a></li> 
-            <li><a href="contact">Contact Us</a></li>
-            <li><a href="terms">Terms</a></li> 
-			<li><a href="privacy">Privacy</a></li>
-          </ul>
-        </div>
-      </div>
-    </div> 
-  </footer>
-
-  <!-- End Footer -->
+		<!-- End Contact Details -->
 
 
+		<!-- Sidebar -->
 
-  <!-- Map Modal -->
+		<div class="three columns">
 
-  <div class="reveal-modal" id="mapModal">
-    <h4>Where We Are</h4>
-    <p><img src="@routes.Assets.at("images/map.png")" /></p>
+			<h5 class="h5rule">Where to find us?</h5>
 
-    <!-- Any anchor with this class will close the modal. This also inherits certain styles, which can be overriden. -->
-    <a href="#" class="close-reveal-modal">&times;</a>
-  </div>
+			<!-- Clicking this placeholder fires the mapModal Reveal modal -->
+			<p>
+				<a href="" data-reveal-id="mapModal"><img
+					src="@routes.Assets.at("./images/map.png")" /></a><br />
+			<center>
+				<a class="textrule" href="" data-reveal-id="mapModal">View Map</a>
+			</center>
+			</p>
 
-  <!-- End Modal -->
+			<p class="textrule">
+				TUM Informatik Dept<br /> Boltzmannstraße 15, 85748 Garching Munich
+			</p>
 
-  <!-- Included JS Files (Uncompressed) -->
-  <!--
+		</div>
+
+		<!-- End Sidebar -->
+	</div>
+
+	<!-- End Main Content and Sidebar -->
+
+
+	<!-- Footer -->
+
+	<footer class="row">
+		<div class="twelve columns">
+			<hr />
+			<div class="row">
+				<div class="six columns">
+					<p>&copy; Copyright semantiQ 2013-14</p>
+				</div>
+				<div class="six columns">
+					<ul class="link-list right">
+						<li class="textrule"><a href="aboutus">About Us</a></li>
+						<li class="textrule"><a href="contact">Contact Us</a></li>
+						<li class="textrule"><a href="terms">Terms</a></li>
+						<li class="textrule"><a href="privacy">Privacy</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- End Footer -->
+
+
+
+	<!-- Map Modal -->
+
+	<div class="reveal-modal" id="mapModal">
+		<h4 class="h4rule">Where to find us?</h4>
+		<p>
+			<img src="@routes.Assets.at("./images/map.png")" />
+		</p>
+
+		<!-- Any anchor with this class will close the modal. This also inherits certain styles, which can be overriden. -->
+		<a href="#" class="close-reveal-modal">&times;</a>
+	</div>
+
+	<!-- End Modal -->
+
+	<!-- Included JS Files (Uncompressed) -->
+	<!--
   
   <script src="javascripts/jquery.js"></script>
   
@@ -194,12 +214,12 @@
   <script src="javascripts/jquery.foundation.magellan.js"></script>
   
   -->
-  
-  <!-- Included JS Files (Compressed) -->
-  <script src="@routes.Assets.at("javascripts/jquery.js")"></script>
-  <script src="@routes.Assets.at("javascripts/foundation.min.js")"></script>
-  
-  <!-- Initialize JS Plugins -->
-  <script src="@routes.Assets.at("javascripts/app.js")"></script>
+
+	<!-- Included JS Files (Compressed) -->
+	<script src="@routes.Assets.at("./javascripts/jquery.js")"></script>
+	<script src="@routes.Assets.at("./javascripts/foundation.min.js")"></script>
+
+	<!-- Initialize JS Plugins -->
+	<script src="@routes.Assets.at("./javascripts/app.js")"></script>
 </body>
 </html>

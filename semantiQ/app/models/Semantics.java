@@ -1,6 +1,10 @@
 package models;
 
+import java.util.List;
+
 public class Semantics {
+	
+	//Variable declarations
 	private String text;
 	private String names;
 	private String summary;
@@ -9,8 +13,18 @@ public class Semantics {
 	private String colemanLiauDiffucultyLevel;
 	private String daleChallDiffucultyLevel;
 	private String smogDiffucultyLevel;
+	private String overallDifficultyLevel;
 	private int syllableCount, numOfWords, numOfSentences;
 	private double automatedReadibilityIndex, fleschReadingEaseScore, colemanLiauIndex, daleChallIndex, smogIndex;
+	private List<String> imagesUrl;
+	
+	//Getters Setters
+	public String getOverallDifficultyLevel() {
+		return overallDifficultyLevel;
+	}
+	public void setOverallDifficultyLevel(String overallDifficultyLevel) {
+		this.overallDifficultyLevel = overallDifficultyLevel;
+	}
 	
 	public String getAutomatedReadibilityDiffucultyLevel() {
 		return automatedReadibilityDiffucultyLevel;
@@ -109,6 +123,12 @@ public class Semantics {
 	}
 	public void setNumOfSentences(int numOfSentences) {
 		this.numOfSentences = numOfSentences;
+	}
+	public List<String> getImagesUrl() {
+		return imagesUrl;
+	}
+	public void setImagesUrl(List<String> imagesUrl) {
+		this.imagesUrl = imagesUrl;
 	}
 	
 }

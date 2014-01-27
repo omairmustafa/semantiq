@@ -11,7 +11,7 @@
   <!-- Set the viewport width to device width for mobile -->
   <meta name="viewport" content="width=device-width" />
 
-  <title>semantiQ | Terms</title>
+<title>semantiQ | Terms</title>
 
   <!-- Included CSS Files (Uncompressed) -->
   <!--
@@ -19,10 +19,10 @@
   -->
   
   <!-- Included CSS Files (Compressed) -->
-  <link rel="stylesheet" href="@routes.Assets.at("stylesheets/foundation.min.css")" />
-  <link rel="stylesheet" href="@routes.Assets.at("stylesheets/app.css")" />
+  <link rel="stylesheet" href="@routes.Assets.at("./stylesheets/foundation.min.css")" />
+  <link rel="stylesheet" href="@routes.Assets.at("./stylesheets/app.css")" />
 
-  <script src="@routes.Assets.at("javascripts/modernizr.foundation.js")"></script>
+  <script src="@routes.Assets.at("./javascripts/modernizr.foundation.js")"></script>
 </head>
 <body>
 
@@ -30,15 +30,9 @@
   
   <div class="row">
     <div class="three columns">
-      <h1><img src="@routes.Assets.at("images/FinalLogo.png")" /></h1>
-    </div>
-    <div class="nine columns">
-      <ul class="nav-bar right">
-        <li><a href="home">Home</a></li>
-        <li><a href="semantiq">semantiQ</a></li>
-        <li><a href="aboutus">About Us</a></li>
-        <li><a href="contact">Contact Us</a></li>
-      </ul>
+     <a href="semantiq"><h1>
+					<img src="@routes.Assets.at("./images/FinalLogo.png")" />
+				</h1></a>
     </div>
   </div>
   
@@ -51,8 +45,8 @@
 
     <!-- Contact Details -->
     <div class="nine columns">
-      <h3>Terms</h3>
-      <p>We have no terms currently!</p>
+      <h3 class="h3rule">Terms</h3>
+      <p class="textrule">We have no terms currently!</p>
     </div>
 
     <!-- End Contact Details -->
@@ -60,23 +54,22 @@
 
     <!-- Sidebar -->
 
-    <div class="three columns">
+		<div class="three columns">
 
-      <h5>semantiQ</h5>
+			<h5 class="h5rule">semantiQ</h5>
 
-      <!-- Clicking this placeholder fires the mapModal Reveal modal -->
-      <p>
-        <a href="" data-reveal-id="mapModal"><img src="@routes.Assets.at("images/SquareLogo.png")" /></a><br />
-        <center><a href="" data-reveal-id="mapModal">Bored?</a></center>
-      </p>
+			<!-- Clicking this placeholder fires the mapModal Reveal modal -->
+			<p>
+				<a href="" data-reveal-id="mapModal"><img
+					src="@routes.Assets.at("./images/SquareLogo.png")" /></a><br />
+			<center>
+				<a class="textrule" href="" data-reveal-id="mapModal">Bored?</a>
+			</center>
+			</p>
 
-      <p>
-        &copy; Copyright semantiQ 2013-14<br />
-      </p>
-
-    </div>
-
-    <!-- End Sidebar -->
+		</div>
+		
+		<!-- End Sidebar -->
   </div>
 
   <!-- End Main Content and Sidebar -->
@@ -93,10 +86,10 @@
         </div>
         <div class="six columns">
           <ul class="link-list right">
-            <li><a href="aboutus">About Us</a></li> 
-            <li><a href="contact">Contact Us</a></li>
-            <li><a href="terms">Terms</a></li> 
-			<li><a href="privacy">Privacy</a></li>
+            <li class="textrule"><a href="aboutus">About Us</a></li> 
+            <li class="textrule"><a href="contact">Contact Us</a></li>
+            <li class="textrule"><a href="terms">Terms</a></li> 
+			<li class="textrule"><a href="privacy">Privacy</a></li>
           </ul>
         </div>
       </div>
@@ -110,7 +103,7 @@
   <!-- Map Modal -->
 
   <div class="reveal-modal" id="mapModal">
-    <h4>Still Bored?</h4>
+    <h4 class="h4rule">Still Bored?</h4>
     <p><img src="images/SquareLogo.png" /></p>
 
     <!-- Any anchor with this class will close the modal. This also inherits certain styles, which can be overriden. -->
@@ -161,10 +154,10 @@
   -->
   
   <!-- Included JS Files (Compressed) -->
-  <script src="@routes.Assets.at("javascripts/jquery.js")"></script>
-  <script src="@routes.Assets.at("javascripts/foundation.min.js")"></script>
+  <script src="@routes.Assets.at("./javascripts/jquery.js")"></script>
+  <script src="@routes.Assets.at("./javascripts/foundation.min.js")"></script>
   
   <!-- Initialize JS Plugins -->
-  <script src="@routes.Assets.at("javascripts/app.js")"></script>
+  <script src="@routes.Assets.at("./javascripts/app.js")"></script>
 </body>
 </html>

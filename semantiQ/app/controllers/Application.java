@@ -10,6 +10,8 @@ import models.ResultProcessor;
 import models.Semantics;
 import models.TextInput;
 import models.TextSummarizer;
+import models.URLInput;
+import models.URLSummarizer;
 import models.WordDocReader;
 import play.data.Form;
 import play.mvc.Http.MultipartFormData;
@@ -19,16 +21,43 @@ import play.mvc.Result;
 
 public class Application extends Controller {
 
-	public static Result index() throws InvalidFormatException, IOException {
-		return redirect(routes.Application.home());
-	}
+//	public static Result index() throws InvalidFormatException, IOException {
+//		return redirect(routes.Application.home());
+//	}
 
 	public static Result home() {
-		return ok(views.html.home.render());
+		return ok(views.html.semantiq.render(Form.form(TextInput.class), Form.form(URLInput.class)));
 	}
 
 	public static Result semantiq() {
-		return ok(views.html.semantiq.render(Form.form(TextInput.class)));
+		return ok(views.html.semantiq.render(Form.form(TextInput.class), Form.form(URLInput.class)));
+	}
+	
+	public static Result urlInput() {
+
+		//Take form input
+		URLInput urlInput = new URLInput();
+		Form<URLInput> form = Form.form(URLInput.class).bindFromRequest();
+		Semantics semantics = null;
+		ResultProcessor processor = new ResultProcessor();
+		
+		if(form.hasErrors()) {
+			return ok(views.html.error.render("Oops! Unable to submit URL"));
+		} 
+		else {
+			urlInput = form.get();
+
+			try {
+				
+				URLSummarizer http = new URLSummarizer();
+				semantics = processor.getSemantics(http.getUrlSummary(urlInput.getUrl()));
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			return ok((semantics != null) ? views.html.result.render(semantics) : views.html.error.render("Oops! Unable to process your text"));
+		}
+		
 	}
 
 	public static Result textInput() {
@@ -40,25 +69,18 @@ public class Application extends Controller {
 		ResultProcessor processor = new ResultProcessor();
 		
 		if(form.hasErrors()) {
-			return ok();
+			return ok(views.html.error.render("Oops! Unable to submit your text"));
 		} 
 		else {
 			textInput = form.get();
 
 			try {
 				semantics = processor.getSemantics(textInput.getText());
-				
-				
-				//Summary under test
-				TextSummarizer summarizer = new TextSummarizer();
-				summarizer.summarise(textInput.getText(), 7);
-				
-				
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
 			}
-			return ok((semantics != null) ? views.html.result.render(semantics) : views.html.index.render("Oops! Unable to process your text"));
+			return ok((semantics != null) ? views.html.result.render(semantics) : views.html.error.render("Oops! Unable to process your text"));
 
 		}
 	}
@@ -109,11 +131,11 @@ public class Application extends Controller {
 				
 				semantics = processor.getSemantics(fileContents.toString());
 				
-				return ok((semantics != null) ? views.html.result.render(semantics) : views.html.index.render("Oops! Unable to process your text"));
+				return ok((semantics != null) ? views.html.result.render(semantics) : views.html.error.render("Oops! Unable to process your text"));
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
-				return ok(views.html.index.render("Oops! Unable to process your text"));
+				return ok(views.html.error.render("Oops! Unable to process your text"));
 			} 
 //			finally {
 //				scanner.close();
@@ -121,60 +143,8 @@ public class Application extends Controller {
 		} 
 		else {
 			flash("error", "Missing file");
-			return redirect(routes.Application.index());    
+			return ok(views.html.error.render("Missing file"));
 		}
 	}
 
-	//
-	//	public static Semantics processText(String text) throws InvalidFormatException, IOException {
-	//		TextInput textInput = new TextInput();
-	//		Form<TextInput> form = Form.form(TextInput.class).bindFromRequest();
-	//		ReadibilityIndexes indexes = new ReadibilityIndexes();
-	//		Stopwords swords = new Stopwords();
-	//		int syllableCount = 0;
-	//		
-	//		List<String> sentenceList = new ArrayList();
-	//		String tokenString = "";
-	//		String[] tokens;
-	//		Semantics semantics = null;
-	//		String paragraph = "";
-	//		paragraph = text;
-	//
-	//		System.out.println(">>>>>>>>>" + paragraph);
-	//		
-	//		if(paragraph.length() > 0) {
-	//			semantics = new Semantics();
-	//			try {
-	//				sentenceList = SentenceDetector.detectSentences(paragraph);
-	//			} catch (InvalidFormatException e) {
-	//				// TODO Auto-generated catch block
-	//				e.printStackTrace();
-	//			} catch (IOException e) {
-	//				// TODO Auto-generated catch block
-	//				e.printStackTrace();
-	//			}
-	//			tokens = Tokenizer.tokenize(paragraph);
-	//
-	//			for (String str : tokens){
-	//				tokenString += "|" + str;
-	//			}
-	//
-	//			for (String str : tokens){
-	//				syllableCount += EnglishSyllableCounter.countSyllables(str);
-	//			}
-	//			
-	//			semantics.setParagraph(paragraph);
-	//			semantics.setNumOfSentences(sentenceList.size());
-	//			semantics.setNumOfWords(tokens.length);
-	//			//        		semantics.setSyllableCount(EnglishSyllableCounter.countSyllables("Extreme"));
-	//			semantics.setARI(indexes.calculateARI(paragraph, tokens.length, sentenceList.size()));
-	//			semantics.setFKI(indexes.calculateFleschKincaidIndex(tokens.length, sentenceList.size(), syllableCount));
-	//			semantics.setCLI(indexes.calculateColemanLiauIndex(paragraph.replaceAll("[^\\w]", "").length(), tokens.length, sentenceList.size()));
-//				semantics.setNames(NameFinder.findNames(tokens).toString());
-	//			semantics.setDCI(indexes.calculateDaleChallIndex(tokens, tokens.length, sentenceList.size()));
-	//			semantics.setSMOG(calculateSMOG(paragraph));
-	//		}
-	//
-	//		return semantics;
-	//	}
 }

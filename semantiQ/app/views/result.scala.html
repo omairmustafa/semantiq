@@ -1,4 +1,5 @@
 @(semantics: Semantics)
+@import helper._
 
 <!DOCTYPE html>
 
@@ -6,131 +7,359 @@
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
 <head>
-  <meta charset="utf-8" />
+<meta charset="utf-8" />
 
-  <!-- Set the viewport width to device width for mobile -->
-  <meta name="viewport" content="width=device-width" />
+<!-- Set the viewport width to device width for mobile -->
+<meta name="viewport" content="width=device-width" />
 
-  <title>semantiQ | Results</title>
+<title>semantiQ | Results</title>
 
-  <!-- Included CSS Files (Uncompressed) -->
-  <!--
+<!-- Included CSS Files (Uncompressed) -->
+<!--
   <link rel="stylesheet" href="stylesheets/foundation.css">
   -->
-  
-  <!-- Included CSS Files (Compressed) -->
-  <link rel="stylesheet" href="@routes.Assets.at("stylesheets/foundation.min.css")" />
-  <link rel="stylesheet" href="@routes.Assets.at("stylesheets/app.css")" />
 
-  <script src="@routes.Assets.at("javascripts/modernizr.foundation.js")"></script>
+<!-- Included CSS Files (Compressed) -->
+<link rel="stylesheet" href="@routes.Assets.at("./stylesheets/foundation.min.css")" />
+<link rel="stylesheet" href="@routes.Assets.at("./stylesheets/app.css")" />
+
+<script src="@routes.Assets.at("./javascripts/modernizr.foundation.js")"></script>
 </head>
 <body>
 
-<!-- Header and Nav -->
-  
-  <div class="row">
-    <div class="three columns">
-      <h1><img src="@routes.Assets.at("images/FinalLogo.png")" /></h1>
-    </div>
-    <div class="nine columns">
-      <ul class="nav-bar right">
-        <li><a href="../home">Home</a></li>
-        <li><a href="../semantiq">semantiQ</a></li>
-        <li><a href="../aboutus">About Us</a></li>
-        <li><a href="../contact">Contact Us</a></li>
-      </ul>
-    </div>
-  </div>
-  
-  <!-- End Header and Nav -->
+	<!-- Header and Nav -->
+
+	<div class="row">
+		<div class="three columns">
+			<a href="../semantiq"><h1>
+					<img src="@routes.Assets.at("./images/FinalLogo.png")" />
+				</h1></a>
+		</div>
+	</div>
+
+	<!-- End Header and Nav -->
 
 
-  <!-- Main Page Content and Sidebar -->
+	<!-- Main Page Content and Sidebar -->
 
-  <div class="row">
+	<div class="row">
 
-    <!-- Contact Details -->
-    <div class="nine columns">
-      <h3>Results</h3>
-      <p>Text: @semantics.getText</p>
-      <p>Summary: @semantics.getSummary</p>
-      <p>Number of words: @semantics.getNumOfWords</p>
-      <p>Number of sentences: @semantics.getNumOfSentences</p>
-      <p>Names: @semantics.getNames</p>
-      <p>Automated Readibility Index: @semantics.getAutomatedReadibilityIndex > @semantics.getAutomatedReadibilityDiffucultyLevel</p>
-      <p>Flesch-Kincaid Reading Ease: @semantics.getFleschReadingEaseScore > @semantics.getFleschReadingEaseDiffucultyLevel</p>
-      <p>Coleman-Liau Index: @semantics.getColemanLiauIndex > @semantics.getColemanLiauDiffucultyLevel</p>
-      <p>Dale-Chall Readibility: @semantics.getDaleChallIndex > @semantics.getDaleChallDiffucultyLevel</p>
-      <p>SMOG: @semantics.getSmogIndex > @semantics.getSmogDiffucultyLevel</p>
-      
-    </div>
+		<!-- Result Details -->
+		<div class="twelve columns">
+			<h3 class="h3rule">Results</h3><br>
 
-    <!-- End Contact Details -->
+			<div class="twelve columns textrule">
+				<p><b>Summary: </b>@semantics.getSummary</p>
+				<br>
+				
+			<h4 class="h3rule"><b>Text Stats</b></h4><br>
+				<p><b>Number of words: </b>@semantics.getNumOfWords</p>
+				<p><b>Number of sentences: </b>@semantics.getNumOfSentences</p>
+				<p><b>Names: </b>@semantics.getNames</p>
+				<br>
+
+			<h4 class="h3rule"><b>Index Interpretation</b></h4><br>
+			
+					@semantics.getOverallDifficultyLevel match {
+				    case "Novice" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 20%; background: #5CB85C"></span>
+						</div>
+						<p class="textrule">&nbsp; Novice</p>
+				    }
+				    case "Easy" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 40%; background: #428BCA"></span>
+						</div>
+						<p class="textrule">&nbsp; Easy</p>
+				    }
+				    case "Medium" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 60%; background: #FFF425"></span>
+						</div>
+						<p class="textrule">&nbsp; Medium</p>
+				    }
+				    case "Difficult" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 80%; background: #F0AD4E"></span>
+						</div>
+						<p class="textrule">&nbsp; Difficult</p>
+				    }
+				    case "Complex" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 100%; background: #D9534F"></span>
+						</div>
+						<p class="textrule">&nbsp; Complex</p>
+				    }
+				}
+				<a class="textrule" href="" data-reveal-id="mapModal">View Details</a>
+				</p>
+				<br>
+			
+			<table>
+			<tr>
+			@if(semantics.getImagesUrl != null) {
+			<h4 class="h3rule"><b>Suggested Images</b></h4><br>
+				@for(url <- semantics.getImagesUrl) {
+					<td>
+						<a href=@url><img src=@url height="200" width="200"></a>
+					</td>
+					<td>
+						<a href=@url>Source</a>
+					</td>
+					}
+				}
+			</tr>
+			</table>
+  			
+			
+
+			</div>
 
 
-    <!-- Sidebar -->
-
-    <div class="three columns">
-
-      <!-- Clicking this placeholder fires the mapModal Reveal modal -->
-      <p>
-        <a href="" data-reveal-id="mapModal"><img src="@routes.Assets.at("images/SquareLogo.png")" /></a><br />
-        <center><a href="" data-reveal-id="mapModal">Bored?</a></center>
-      </p>
-
-      <p>
-        &copy; Copyright semantiQ 2013-14<br />
-      </p>
-
-    </div>
-
-    <!-- End Sidebar -->
-  </div>
-
-  <!-- End Main Content and Sidebar -->
+		<!-- End Result Details -->
 
 
-  <!-- Footer -->
+	</div>
 
-   <footer class="row">
-    <div class="twelve columns">
-      <hr />
-      <div class="row">
-        <div class="six columns">
-          <p>&copy; Copyright semantiQ 2013-14</p>
-        </div>
-        <div class="six columns">
-          <ul class="link-list right">
-            <li><a href="../aboutus">About Us</a></li> 
-            <li><a href="../contact">Contact Us</a></li>
-            <li><a href="../terms">Terms</a></li> 
-			<li><a href="../privacy">Privacy</a></li>
-          </ul>
-        </div>
-      </div>
-    </div> 
-  </footer>
+	<!-- End Main Content and Sidebar -->
 
-  <!-- End Footer -->
+
+	<!-- Footer -->
+
+	<footer class="row">
+		<div class="twelve columns">
+			<hr />
+			<div class="row">
+				<div class="six columns">
+					<p>&copy; Copyright semantiQ 2013-14</p>
+				</div>
+				<div class="six columns">
+					<ul class="link-list right">
+						<li class="textrule"><a href="../aboutus">About Us</a></li>
+						<li class="textrule"><a href="../contact">Contact Us</a></li>
+						<li class="textrule"><a href="../terms">Terms</a></li>
+						<li class="textrule"><a href="../privacy">Privacy</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- End Footer -->
 
 
 
-  <!-- Map Modal -->
+	<!-- Map Modal -->
 
-  <div class="reveal-modal" id="mapModal">
-    <h4>Still Bored?</h4>
-    <p><img src="images/SquareLogo.png" /></p>
+	<div class="reveal-modal" id="mapModal">
+		<h4 class="h4rule">Indices</h4>
+		<p>
+			<p><b>Automated Readibility Index: </b>
+					@semantics.getAutomatedReadibilityIndex</p>
 
-    <!-- Any anchor with this class will close the modal. This also inherits certain styles, which can be overriden. -->
-    <a href="#" class="close-reveal-modal">&times;</a>
-  </div>
+				
+				@semantics.getAutomatedReadibilityDiffucultyLevel match {
+				    case "Novice" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 20%; background: #5CB85C"></span>
+						</div>
+						<p class="textrule">&nbsp; Novice</p>
+				    }
+				    case "Easy" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 40%; background: #428BCA"></span>
+						</div>
+						<p class="textrule">&nbsp; Easy</p>
+				    }
+				    case "Medium" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 60%; background: #FFF425"></span>
+						</div>
+						<p class="textrule">&nbsp; Medium</p>
+				    }
+				    case "Difficult" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 80%; background: #F0AD4E"></span>
+						</div>
+						<p class="textrule">&nbsp; Difficult</p>
+				    }
+				    case "Complex" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 100%; background: #D9534F"></span>
+						</div>
+						<p class="textrule">&nbsp; Complex</p>
+				    }
+				}
+				
+				
+				
+				<p><b>Flesch-Kincaid Reading Ease: </b>
+					@semantics.getFleschReadingEaseScore</p>
+					
+					@semantics.getFleschReadingEaseDiffucultyLevel match {
+				    case "Novice" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 20%; background: #5CB85C"></span>
+						</div>
+						<p class="textrule">&nbsp; Novice</p>
+				    }
+				    case "Easy" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 40%; background: #428BCA"></span>
+						</div>
+						<p class="textrule">&nbsp; Easy</p>
+				    }
+				    case "Medium" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 60%; background: #FFF425"></span>
+						</div>
+						<p class="textrule">&nbsp; Medium</p>
+				    }
+				    case "Difficult" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 80%; background: #F0AD4E"></span>
+						</div>
+						<p class="textrule">&nbsp; Difficult</p>
+				    }
+				    case "Complex" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 100%; background: #D9534F"></span>
+						</div>
+						<p class="textrule">&nbsp; Complex</p>
+				    }
+				}  
+					
+					
+					
+					
+				<p><b>Coleman-Liau Index: </b>
+					@semantics.getColemanLiauIndex</p>
+					
+					@semantics.getColemanLiauDiffucultyLevel match {
+				    case "Novice" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 20%; background: #5CB85C"></span>
+						</div>
+						<p class="textrule">&nbsp; Novice</p>
+				    }
+				    case "Easy" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 40%; background: #428BCA"></span>
+						</div>
+						<p class="textrule">&nbsp; Easy</p>
+				    }
+				    case "Medium" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 60%; background: #FFF425"></span>
+						</div>
+						<p class="textrule">&nbsp; Medium</p>
+				    }
+				    case "Difficult" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 80%; background: #F0AD4E"></span>
+						</div>
+						<p class="textrule">&nbsp; Difficult</p>
+				    }
+				    case "Complex" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 100%; background: #D9534F"></span>
+						</div>
+						<p class="textrule">&nbsp; Complex</p>
+				    }
+				}
+					
+					
+					
+					
+				<p><b>Dale-Chall Readibility: </b>
+					@semantics.getDaleChallIndex</p>
+					
+					@semantics.getDaleChallDiffucultyLevel match {
+				    case "Novice" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 20%; background: #5CB85C"></span>
+						</div>
+						<p class="textrule">&nbsp; Novice</p>
+				    }
+				    case "Easy" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 40%; background: #428BCA"></span>
+						</div>
+						<p class="textrule">&nbsp; Easy</p>
+				    }
+				    case "Medium" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 60%; background: #FFF425"></span>
+						</div>
+						<p class="textrule">&nbsp; Medium</p>
+				    }
+				    case "Difficult" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 80%; background: #F0AD4E"></span>
+						</div>
+						<p class="textrule">&nbsp; Difficult</p>
+				    }
+				    case "Complex" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 100%; background: #D9534F"></span>
+						</div>
+						<p class="textrule">&nbsp; Complex</p>
+				    }
+				}
+					
+					
+					
+				<p><b>SMOG: </b> 
+					@semantics.getSmogIndex</p>
+					
+					
+					@semantics.getSmogDiffucultyLevel match {
+				    case "Novice" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 20%; background: #5CB85C"></span>
+						</div>
+						<p class="textrule">&nbsp; Novice</p>
+				    }
+				    case "Easy" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 40%; background: #428BCA"></span>
+						</div>
+						<p class="textrule">&nbsp; Easy</p>
+				    }
+				    case "Medium" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 60%; background: #FFF425"></span>
+						</div>
+						<p class="textrule">&nbsp; Medium</p>
+				    }
+				    case "Difficult" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 80%; background: #F0AD4E"></span>
+						</div>
+						<p class="textrule">&nbsp; Difficult</p>
+				    }
+				    case "Complex" => {
+					    <div class="three columns progress">
+						<span class="meter" style="width: 100%; background: #D9534F"></span>
+						</div>
+						<p class="textrule">&nbsp; Complex</p>
+				    }
+				}
+		</p>
+		
+		<!-- Any anchor with this class will close the modal. This also inherits certain styles, which can be overriden. -->
+		<a href="#" class="close-reveal-modal">&times;</a>
+	</div>
+	
+	<!-- End Modal -->
 
-  <!-- End Modal -->
-
-  <!-- Included JS Files (Uncompressed) -->
-  <!--
+	<!-- Included JS Files (Uncompressed) -->
+	<!--
   
   <script src="javascripts/jquery.js"></script>
   
@@ -169,12 +398,13 @@
   <script src="javascripts/jquery.foundation.magellan.js"></script>
   
   -->
-  
-  <!-- Included JS Files (Compressed) -->
-  <script src="@routes.Assets.at("javascripts/jquery.js")"></script>
-  <script src="@routes.Assets.at("javascripts/foundation.min.js")"></script>
-  
-  <!-- Initialize JS Plugins -->
-  <script src="@routes.Assets.at("javascripts/app.js")"></script>
+
+	<!-- Included JS Files (Compressed) -->
+	<script src="@routes.Assets.at("./javascripts/jquery.js")"></script>
+	<script src="@routes.Assets.at("./javascripts/foundation.min.js")"></script>
+	<script src="@routes.Assets.at("./javascripts/foundation.dropdown.js")"></script>
+	
+	<!-- Initialize JS Plugins -->
+	<script src="@routes.Assets.at("./javascripts/app.js")"></script>
 </body>
 </html>

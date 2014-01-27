@@ -8,6 +8,9 @@ public class IndexFleschKincaid implements IReadabilityIndex {
 		
 		//Implementation of Flesch-Kincaid Reading Ease formula
 		rating = (double) (206.835 - 1.015 * (totalWords/(double)totalSentences) - 84.6 * (totalSyllables/(double)totalWords));
+		
+		
+		System.out.println(totalWords + " " + totalSyllables);
 	}
 	
 	@Override

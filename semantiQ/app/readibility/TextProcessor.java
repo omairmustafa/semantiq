@@ -1,12 +1,13 @@
 package readibility;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
-import models.NameFinder;
-import models.SentenceDetector;
 import models.TextSummarizer;
 import models.Tokenizer;
+import opennlp.NameFinder;
+import opennlp.SentenceDetector;
 
 public class TextProcessor {
 
@@ -16,6 +17,7 @@ public class TextProcessor {
 	private int syllableCount = 0;
 	private String text;
 	private String summary;
+	private List<String> imageUrls;
 	
 	public String getSummary() {
 		return summary;
@@ -34,7 +36,11 @@ public class TextProcessor {
 	public String[] getTokens() {
 		return tokens;
 	}
-	
+
+	public List<String> getImageUrls() {
+		return imageUrls;
+	}
+
 	public int getSyllableCount() {
 		return syllableCount;
 	}
@@ -54,13 +60,14 @@ public class TextProcessor {
 		this.text = text;
 		this.names = parseNames(this.tokens);
 		this.summary = summarizeText(text);
+		//this.imageUrls = GoogleImagesLoader.getGoogleImageUrls(parseNames(this.tokens));
 		
 	}
 	
 	private String summarizeText(String text) {
 		
 		TextSummarizer summariser = new TextSummarizer();
-		return summariser.summarise(text, 15);
+		return summariser.summarise(text, 5);
 		
 	}
 	

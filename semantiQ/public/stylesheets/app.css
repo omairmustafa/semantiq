@@ -12,7 +12,35 @@
 /* -----------------------------------------
    Shared Styles
 ----------------------------------------- */
-
+.claimrule
+{
+	color: #777; 
+	font-family: Trebuchet MS; 
+	font-weight: 300; 
+	font-size: 2.5em;
+}	
+.h3rule
+{
+	color: #777; 
+	font-family: Trebuchet MS; 
+}	
+.h4rule
+{
+	color: #bfbfbf; 
+	font-family: Trebuchet MS; 
+	font-weight: 300; 
+	font-size: 1.5em; 
+	letter-spacing: .1em;
+}
+.h5rule
+{
+	color: #777; 
+	font-family: Trebuchet MS; 
+}
+.textrule
+{
+	font-family:Trebuchet MS;
+}
 
 
 /* -----------------------------------------
