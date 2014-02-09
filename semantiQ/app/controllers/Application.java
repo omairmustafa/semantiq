@@ -21,9 +21,6 @@ import play.mvc.Result;
 
 public class Application extends Controller {
 
-//	public static Result index() throws InvalidFormatException, IOException {
-//		return redirect(routes.Application.home());
-//	}
 
 	public static Result home() {
 		return ok(views.html.semantiq.render(Form.form(TextInput.class), Form.form(URLInput.class)));
