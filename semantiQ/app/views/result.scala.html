@@ -26,6 +26,7 @@
 <!-- Included CSS Files (Compressed) -->
 <link rel="stylesheet" href="@routes.Assets.at("./stylesheets/foundation.min.css")" />
 <link rel="stylesheet" href="@routes.Assets.at("./stylesheets/app.css")" />
+<link rel="stylesheet" href="@routes.Assets.at("./stylesheets/lightbox.css")" />
 
 <script src="@routes.Assets.at("./javascripts/modernizr.foundation.js")"></script>
 </head>
@@ -53,77 +54,106 @@
 			<h3 class="h3rule">Results</h3><br>
 
 			<div class="twelve columns textrule">
-				<p><b>Summary: </b>@semantics.getSummary</p>
+				<p class="prule" class="prule"><b>Summary: </b>@semantics.getSummary</p>
 				<br>
-				
+			
+		<div class="six columns">
 			<h4 class="h3rule"><b>Text Stats</b></h4><br>
-				<p><b>Number of words: </b>@semantics.getNumOfWords</p>
-				<p><b>Number of sentences: </b>@semantics.getNumOfSentences</p>
-				<p><b>Names: </b>@semantics.getNames</p>
-				<br>
+				<p class="prule" class="prule"><b>Number of words: </b>@semantics.getNumOfWords</p>
+				<p class="prule" class="prule"><b>Number of sentences: </b>@semantics.getNumOfSentences</p>
+				<p class="prule" class="prule"><b>Names: </b>@semantics.getNames</p>
+				
+				
+				<p class="prule" class="prule">
+					
+					
+					
+					
 
-			<h4 class="h3rule"><b>Index Interpretation</b></h4><br>
+				</p>	
+				
+				<br>
+		</div>
+
+	
+
+		<div class="six columns">
+		<h4 class="h3rule"><b>Text Complexity</b></h4><br>
 			
 					@semantics.getOverallDifficultyLevel match {
 				    case "Novice" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 20%; background: #5CB85C"></span>
 						</div>
-						<p class="textrule">&nbsp; Novice</p>
+						<p class="prule" class="prule" class="textrule">&nbsp; Novice</p>
 				    }
 				    case "Easy" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 40%; background: #428BCA"></span>
 						</div>
-						<p class="textrule">&nbsp; Easy</p>
+						<p class="prule" class="prule" class="textrule">&nbsp; Easy</p>
 				    }
 				    case "Medium" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 60%; background: #FFF425"></span>
 						</div>
-						<p class="textrule">&nbsp; Medium</p>
+						<p class="prule" class="prule" class="textrule">&nbsp; Medium</p>
 				    }
 				    case "Difficult" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 80%; background: #F0AD4E"></span>
 						</div>
-						<p class="textrule">&nbsp; Difficult</p>
+						<p class="prule" class="prule" class="textrule">&nbsp; Difficult</p>
 				    }
 				    case "Complex" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 100%; background: #D9534F"></span>
 						</div>
-						<p class="textrule">&nbsp; Complex</p>
+						<p class="prule" class="prule" class="textrule">&nbsp; Complex</p>
 				    }
 				}
 				<a class="textrule" href="" data-reveal-id="mapModal">View Details</a>
 				</p>
 				<br>
+		
 			
-			<table>
-			<tr>
-			@if(semantics.getImagesUrl != null) {
-			<h4 class="h3rule"><b>Suggested Images</b></h4><br>
-				@for(url <- semantics.getImagesUrl) {
-					<td>
-						<a href=@url><img src=@url height="200" width="200"></a>
-					</td>
-					<td>
-						<a href=@url>Source</a>
-					</td>
-					}
-				}
-			</tr>
-			</table>
-  			
-			
+		</div>
 
-			</div>
+
+				<div class="twelve columns">
+		
+			<table>
+					<tr>
+						<td><b>Keyword/Tags</b></td>
+						<td><b>Relevance</b></td>
+					</tr>
+					@for((key, value) <- semantics.getKeywordRelevance){
+					<tr>
+						<td>@key</td>
+						<td>@value</td>
+					</tr>
+					}
+			</table>
+			<table>
+				
+				@if(semantics.getImagesUrl != null) {
+				<h4 class="h3rule"><b>Suggested Images</b></h4><br>
+					@for(url <- semantics.getImagesUrl) {
+					<tr>
+							<!-- <a href=@url><img src=@url rel="lightbox" height="200" width="200"></a>  -->
+							 <a href=@url rel="lightbox"><img src=@url height="150" width="150"/></a> &nbsp;&nbsp;&nbsp;
+					</tr>
+						}
+					}
+				
+			</table>			
+		</div>
+		
+		
+		</div>
 
 
 		<!-- End Result Details -->
-
-
 	</div>
 
 	<!-- End Main Content and Sidebar -->
@@ -136,7 +166,7 @@
 			<hr />
 			<div class="row">
 				<div class="six columns">
-					<p>&copy; Copyright semantiQ 2013-14</p>
+					<p class="prule" class="prule">&copy; Copyright semantiQ 2013-14</p>
 				</div>
 				<div class="six columns">
 					<ul class="link-list right">
@@ -158,196 +188,192 @@
 
 	<div class="reveal-modal" id="mapModal">
 		<h4 class="h4rule">Indices</h4>
-		<p>
-			<p><b>Automated Readibility Index: </b>
+		<p class="prule" class="prule">
+			<p class="prule" class="prule"><b>Automated Readibility Index: </b>
 					@semantics.getAutomatedReadibilityIndex</p>
 
 				
 				@semantics.getAutomatedReadibilityDiffucultyLevel match {
 				    case "Novice" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 20%; background: #5CB85C"></span>
 						</div>
-						<p class="textrule">&nbsp; Novice</p>
+						<p class="prule" class="prule" class="textrule">&nbsp; Novice</p>
 				    }
 				    case "Easy" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 40%; background: #428BCA"></span>
 						</div>
-						<p class="textrule">&nbsp; Easy</p>
+						<p class="prule" class="prule" class="textrule">&nbsp; Easy</p>
 				    }
 				    case "Medium" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 60%; background: #FFF425"></span>
 						</div>
-						<p class="textrule">&nbsp; Medium</p>
+						<p class="prule" class="prule" class="textrule">&nbsp; Medium</p>
 				    }
 				    case "Difficult" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 80%; background: #F0AD4E"></span>
 						</div>
-						<p class="textrule">&nbsp; Difficult</p>
+						<p class="prule" class="prule" class="textrule">&nbsp; Difficult</p>
 				    }
 				    case "Complex" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 100%; background: #D9534F"></span>
 						</div>
-						<p class="textrule">&nbsp; Complex</p>
+						<p class="prule" class="prule" class="textrule">&nbsp; Complex</p>
 				    }
 				}
 				
 				
 				
-				<p><b>Flesch-Kincaid Reading Ease: </b>
+				<p class="prule" class="prule"><b>Flesch-Kincaid Reading Ease: </b>
 					@semantics.getFleschReadingEaseScore</p>
 					
 					@semantics.getFleschReadingEaseDiffucultyLevel match {
 				    case "Novice" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 20%; background: #5CB85C"></span>
 						</div>
-						<p class="textrule">&nbsp; Novice</p>
+						<p class="prule" class="prule" class="textrule">&nbsp; Novice</p>
 				    }
 				    case "Easy" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 40%; background: #428BCA"></span>
 						</div>
-						<p class="textrule">&nbsp; Easy</p>
+						<p class="prule" class="prule" class="textrule">&nbsp; Easy</p>
 				    }
 				    case "Medium" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 60%; background: #FFF425"></span>
 						</div>
-						<p class="textrule">&nbsp; Medium</p>
+						<p class="prule" class="textrule">&nbsp; Medium</p>
 				    }
 				    case "Difficult" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 80%; background: #F0AD4E"></span>
 						</div>
-						<p class="textrule">&nbsp; Difficult</p>
+						<p class="prule" class="textrule">&nbsp; Difficult</p>
 				    }
 				    case "Complex" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 100%; background: #D9534F"></span>
 						</div>
-						<p class="textrule">&nbsp; Complex</p>
+						<p class="prule" class="textrule">&nbsp; Complex</p>
 				    }
 				}  
 					
 					
-					
-					
-				<p><b>Coleman-Liau Index: </b>
+				<p class="prule"><b>Coleman-Liau Index: </b>
 					@semantics.getColemanLiauIndex</p>
 					
 					@semantics.getColemanLiauDiffucultyLevel match {
 				    case "Novice" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 20%; background: #5CB85C"></span>
 						</div>
-						<p class="textrule">&nbsp; Novice</p>
+						<p class="prule" class="textrule">&nbsp; Novice</p>
 				    }
 				    case "Easy" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 40%; background: #428BCA"></span>
 						</div>
-						<p class="textrule">&nbsp; Easy</p>
+						<p class="prule" class="textrule">&nbsp; Easy</p>
 				    }
 				    case "Medium" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 60%; background: #FFF425"></span>
 						</div>
-						<p class="textrule">&nbsp; Medium</p>
+						<p class="prule" class="textrule">&nbsp; Medium</p>
 				    }
 				    case "Difficult" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 80%; background: #F0AD4E"></span>
 						</div>
-						<p class="textrule">&nbsp; Difficult</p>
+						<p class="prule" class="textrule">&nbsp; Difficult</p>
 				    }
 				    case "Complex" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 100%; background: #D9534F"></span>
 						</div>
-						<p class="textrule">&nbsp; Complex</p>
+						<p class="prule" class="textrule">&nbsp; Complex</p>
 				    }
 				}
 					
 					
-					
-					
-				<p><b>Dale-Chall Readibility: </b>
+				<p class="prule"><b>Dale-Chall Readibility: </b>
 					@semantics.getDaleChallIndex</p>
 					
 					@semantics.getDaleChallDiffucultyLevel match {
 				    case "Novice" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 20%; background: #5CB85C"></span>
 						</div>
-						<p class="textrule">&nbsp; Novice</p>
+						<p class="prule" class="textrule">&nbsp; Novice</p>
 				    }
 				    case "Easy" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 40%; background: #428BCA"></span>
 						</div>
-						<p class="textrule">&nbsp; Easy</p>
+						<p class="prule" class="textrule">&nbsp; Easy</p>
 				    }
 				    case "Medium" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 60%; background: #FFF425"></span>
 						</div>
-						<p class="textrule">&nbsp; Medium</p>
+						<p class="prule" class="textrule">&nbsp; Medium</p>
 				    }
 				    case "Difficult" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 80%; background: #F0AD4E"></span>
 						</div>
-						<p class="textrule">&nbsp; Difficult</p>
+						<p class="prule" class="textrule">&nbsp; Difficult</p>
 				    }
 				    case "Complex" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 100%; background: #D9534F"></span>
 						</div>
-						<p class="textrule">&nbsp; Complex</p>
+						<p class="prule" class="textrule">&nbsp; Complex</p>
 				    }
 				}
 					
 					
 					
-				<p><b>SMOG: </b> 
+				<p class="prule"><b>SMOG: </b> 
 					@semantics.getSmogIndex</p>
 					
 					
 					@semantics.getSmogDiffucultyLevel match {
 				    case "Novice" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 20%; background: #5CB85C"></span>
 						</div>
-						<p class="textrule">&nbsp; Novice</p>
+						<p class="prule" class="textrule">&nbsp; Novice</p>
 				    }
 				    case "Easy" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 40%; background: #428BCA"></span>
 						</div>
-						<p class="textrule">&nbsp; Easy</p>
+						<p class="prule" class="textrule">&nbsp; Easy</p>
 				    }
 				    case "Medium" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 60%; background: #FFF425"></span>
 						</div>
-						<p class="textrule">&nbsp; Medium</p>
+						<p class="prule" class="textrule">&nbsp; Medium</p>
 				    }
 				    case "Difficult" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 80%; background: #F0AD4E"></span>
 						</div>
-						<p class="textrule">&nbsp; Difficult</p>
+						<p class="prule" class="textrule">&nbsp; Difficult</p>
 				    }
 				    case "Complex" => {
-					    <div class="three columns progress">
+					    <div class="five columns progress">
 						<span class="meter" style="width: 100%; background: #D9534F"></span>
 						</div>
-						<p class="textrule">&nbsp; Complex</p>
+						<p class="prule" class="textrule">&nbsp; Complex</p>
 				    }
 				}
 		</p>
@@ -401,7 +427,8 @@
 
 	<!-- Included JS Files (Compressed) -->
 	<script src="@routes.Assets.at("./javascripts/jquery.js")"></script>
-	<script src="@routes.Assets.at("./javascripts/foundation.min.js")"></script>
+	<script src="@routes.Assets.at("./javascripts/jquery.lightbox-0.4.js")"></script>
+		<script src="@routes.Assets.at("./javascripts/foundation.min.js")"></script>
 	<script src="@routes.Assets.at("./javascripts/foundation.dropdown.js")"></script>
 	
 	<!-- Initialize JS Plugins -->

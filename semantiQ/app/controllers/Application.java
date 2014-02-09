@@ -1,5 +1,8 @@
 package controllers;
 
+import in.tum.de.sebis.callers.URLSummarizer;
+import in.tum.de.sebis.callers.URLTextExtractor;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -11,7 +14,6 @@ import models.Semantics;
 import models.TextInput;
 import models.TextSummarizer;
 import models.URLInput;
-import models.URLSummarizer;
 import models.WordDocReader;
 import play.data.Form;
 import play.mvc.Http.MultipartFormData;
@@ -21,6 +23,9 @@ import play.mvc.Result;
 
 public class Application extends Controller {
 
+//	public static Result index() throws InvalidFormatException, IOException {
+//		return redirect(routes.Application.home());
+//	}
 
 	public static Result home() {
 		return ok(views.html.semantiq.render(Form.form(TextInput.class), Form.form(URLInput.class)));
@@ -47,7 +52,9 @@ public class Application extends Controller {
 			try {
 				
 				URLSummarizer http = new URLSummarizer();
-				semantics = processor.getSemantics(http.getUrlSummary(urlInput.getUrl()));
+				semantics = processor.getSemantics(URLTextExtractor.extractTextFromURL(urlInput.getUrl()));
+				semantics.setSummary(http.getUrlSummary(urlInput.getUrl()));
+				
 			} 
 			catch (Exception e) {
 				e.printStackTrace();

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 
 import readibility.ReadablityIndexFactory;
@@ -139,23 +141,50 @@ public class ResultProcessor {
 		List<String> names = processor.getNames();
 		semantics.setText(processor.getText());
 		semantics.setSummary(processor.getSummary());
-		semantics.setNames(names.toString());
-		semantics.setNumOfSentences(processor.getSentences().size());
 		semantics.setNumOfWords(processor.getTokens().length);
+		semantics.setNumOfSentences(processor.getSentences().size());
+		semantics.setNames(names.toString());
+		semantics.setKeywordRelevance(processor.getKeywordRelevance());
 		
-		if (names.size() > 0)
-			this.populateNameImagesUrl(names, semantics);
+		//Send only the top ten keywords as per relevance sorting
+		this.populateImageUrls(processor.getKeywordRelevance(), semantics);
 		
 	}
 	
-	private void populateNameImagesUrl(List<String>names, Semantics semantics) {
+	private void populateImageUrls(HashMap<String, Float> keywords, Semantics semantics) {
+
+		AvatarManager manager = new AvatarManager();
+		List<String> urls =  new  ArrayList<String>();
+		Random randomNumberGenerator = new Random();
+		
+		for (Map.Entry<String, Float> entry : keywords.entrySet())	{
+			
+			List<String> imagesUrls = manager.getImageUrls(entry.getKey());
+			String url;
+			
+			int imageIndex = randomNumberGenerator.nextInt(imagesUrls.size());
+			
+			if(imagesUrls.size() > 0) {
+				url = imagesUrls.get(imageIndex);
+				urls.add(url);
+				
+				if (urls.size() >=10) break;
+				
+			}//if
+		}
+
+		semantics.setImagesUrl(urls);	
+	}
+	
+	private void populateNameImagesUrl(List<String> names, Semantics semantics) {
 		
 		AvatarManager manager = new AvatarManager();
 		List<String> urls =  new  ArrayList<String>(); 
 		for(String name: names) {
 			List<String> imagesUrls = manager.getImageUrls(name);
 			String url;
-			int index = 0;
+			
+			int index = 0;//To get first image only
 			if(imagesUrls.size() > 0) {
 				url = imagesUrls.get(index);
 				urls.add(url);
@@ -168,7 +197,7 @@ public class ResultProcessor {
 		semantics.setImagesUrl(urls);	
 	}
 	
-	private HashMap<ReadablityIndexFactory.ReadablityIndex, Double> getIndexesResult(String text){
+	private HashMap<ReadablityIndexFactory.ReadablityIndex, Double> getIndexesResult(String text) {
 
 		ReadablityIndexFactory indexFactory = new ReadablityIndexFactory();
 		HashMap<ReadablityIndexFactory.ReadablityIndex, Double> map = new HashMap<ReadablityIndexFactory.ReadablityIndex, Double>();

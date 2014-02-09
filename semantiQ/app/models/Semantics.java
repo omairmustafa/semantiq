@@ -1,5 +1,6 @@
 package models;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Semantics {
@@ -14,13 +15,21 @@ public class Semantics {
 	private String daleChallDiffucultyLevel;
 	private String smogDiffucultyLevel;
 	private String overallDifficultyLevel;
+	private HashMap<String, Float> keywordRelevance;
 	private int syllableCount, numOfWords, numOfSentences;
 	private double automatedReadibilityIndex, fleschReadingEaseScore, colemanLiauIndex, daleChallIndex, smogIndex;
 	private List<String> imagesUrl;
 	
 	//Getters Setters
+	
 	public String getOverallDifficultyLevel() {
 		return overallDifficultyLevel;
+	}
+	public HashMap<String, Float> getKeywordRelevance() {
+		return keywordRelevance;
+	}
+	public void setKeywordRelevance(HashMap<String, Float> keywordRelevance) {
+		this.keywordRelevance = keywordRelevance;
 	}
 	public void setOverallDifficultyLevel(String overallDifficultyLevel) {
 		this.overallDifficultyLevel = overallDifficultyLevel;

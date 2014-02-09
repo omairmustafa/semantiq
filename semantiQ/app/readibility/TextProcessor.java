@@ -1,7 +1,12 @@
 package readibility;
 
 
+import in.tum.de.sebis.callers.EntityExtraction;
+import in.tum.de.sebis.callers.KeywordExtraction;
+import in.tum.de.sebis.callers.URLSummarizer;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import models.TextSummarizer;
@@ -18,7 +23,12 @@ public class TextProcessor {
 	private String text;
 	private String summary;
 	private List<String> imageUrls;
+	private HashMap<String, Float> keywordRelevance = new HashMap<String, Float>();
 	
+	public HashMap<String, Float> getKeywordRelevance() {
+		return keywordRelevance;
+	}
+
 	public String getSummary() {
 		return summary;
 	}
@@ -59,9 +69,16 @@ public class TextProcessor {
 		this.syllableCount = calculateSyllables(this.tokens);
 		this.text = text;
 		this.names = parseNames(this.tokens);
+		this.keywordRelevance = getTopTenKeywords(text);
 		this.summary = summarizeText(text);
-		//this.imageUrls = GoogleImagesLoader.getGoogleImageUrls(parseNames(this.tokens));
 		
+//		this.summary = EntityExtraction.getEntities(text);
+		
+	}
+	
+	private HashMap<String, Float> getTopTenKeywords (String text) {
+		
+		return KeywordExtraction.getTopTenKeywords(text);
 	}
 	
 	private String summarizeText(String text) {
@@ -73,7 +90,7 @@ public class TextProcessor {
 	
 	private List<String> parseSentences(String text){
 		
-		List<String> sentences = new ArrayList();
+		List<String> sentences = new ArrayList<String>();
 
 		if(text.length() > 0) {
 
