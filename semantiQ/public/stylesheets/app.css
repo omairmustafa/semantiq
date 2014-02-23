@@ -1,0 +1,83 @@
+/* Artfully masterminded by ZURB  */
+
+/* -------------------------------------------------- 
+   Table of Contents
+-----------------------------------------------------
+:: Shared Styles
+:: Page Name 1
+:: Page Name 2
+*/
+
+
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+.claimrule
+{
+	color: #777; 
+	font-family: Trebuchet MS; 
+	font-weight: 300; 
+	font-size: 2.5em;
+}	
+.h3rule
+{
+	color: #777; 
+	font-family: Trebuchet MS; 
+}	
+.h4rule
+{
+	color: #bfbfbf; 
+	font-family: Trebuchet MS; 
+	font-weight: 300; 
+	font-size: 1.5em; 
+	letter-spacing: .1em;
+}
+.h5rule
+{
+	color: #777; 
+	font-family: Trebuchet MS; 
+}
+.textrule
+{
+	font-family:Trebuchet MS;
+}
+
+.prule
+{
+	color: #777; 
+	font-size: 1.18em; 
+}
+
+/* -----------------------------------------
+   Page Name 1
+----------------------------------------- */
+.container {
+    width:100%;
+    
+}
+.container div {
+    width:100%;
+}
+.container .header {
+    
+    color: blue; 
+	font-family: Trebuchet MS;
+	font-weight: 300; 
+	font-size: 1.25em;  
+    padding: 2px;
+    cursor: pointer;
+    align: right;
+}
+.container .content {
+    display: none;
+    padding : 5px;
+}
+
+background-color:#F9F9F9;
+border:1px solid #d3d3d3;
+
+/* -----------------------------------------
+   Page Name 2
+----------------------------------------- */
+
+
