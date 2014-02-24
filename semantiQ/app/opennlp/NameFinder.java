@@ -55,7 +55,9 @@ public class NameFinder {
 			for (int i = s.getStart(); i < s.getEnd(); i++){
 				name += tokens[i];
 			}
-			names.add(name);
+			
+			if (!names.contains(name))
+				names.add(name);
 			name = "";
 		}
 

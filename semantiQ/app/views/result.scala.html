@@ -54,26 +54,17 @@
 			<h3 class="h3rule">Results</h3><br>
 
 			<div class="twelve columns textrule">
-				<p class="prule" class="prule"><b>Summary: </b>@semantics.getSummary</p>
+			<h4 class="h3rule"><b>Summary</b></h4><br>
+				<p class="prule" class="prule" align="justify">@semantics.getSummary</p>
 				<br>
 			
 		<div class="six columns">
 			<h4 class="h3rule"><b>Text Stats</b></h4><br>
-				<p class="prule" class="prule"><b>Number of words: </b>@semantics.getNumOfWords</p>
-				<p class="prule" class="prule"><b>Number of sentences: </b>@semantics.getNumOfSentences</p>
-				<p class="prule" class="prule"><b>Names: </b>@semantics.getNames</p>
-				<p class="prule" class="prule">
-					
-					
-					
-					
+				<font class="rawrule">Number of words: </b></font><p class="prule" class="prule">@semantics.getNumOfWords</p>
+				<label class="rawrule">Number of sentences: </b></label><p class="prule" class="prule">@semantics.getNumOfSentences</p>
 
-				</p>	
-				
-				<br>
 		</div>
-
-	
+		
 
 		<div class="six columns">
 		<h4 class="h3rule"><b>Text Complexity</b></h4><br>
@@ -111,14 +102,17 @@
 				    }
 				}
 				<a class="textrule" href="" data-reveal-id="mapModal">View Details</a>
-				</p>
 				<br>
 		
 			
 		</div>
-			
+		
 			<div class="twelve columns">
-			
+	
+			<h4 class="h3rule"><b>Names</b></h4>
+			<p class="prule" class="prule">@semantics.getNames</p>			
+			<br>
+		
 			<h4 class="h3rule"><b>Keywords</b></h4>
 			
 			<div class="container">
@@ -145,6 +139,7 @@
 			</div>
 			
 			<br>
+			<br>
 			
 			<h4 class="h3rule"><b>Entites</b></h4>
 			
@@ -169,7 +164,7 @@
 									<td>@entity.getEntityType</td>
 									<td>@entity.getEntityRelevance</td>
 									<td>@entity.getEntityOccuranceCount</td>
-									<td><a href=@entity.getEntityWebsite>@entity.getEntityWebsite</a></td>
+									<td><a href=@entity.getEntityWebsite target="_blank">@entity.getEntityWebsite</a></td>
 								</tr>
 								}
 						</table>
@@ -177,7 +172,7 @@
 				</div>
 			</div>
 			
-			
+			<br>
 			
 			<table>
 				

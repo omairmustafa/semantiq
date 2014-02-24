@@ -7,6 +7,7 @@ import in.tum.de.sebis.callers.URLSummarizer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import models.TextSummarizer;
@@ -24,6 +25,7 @@ public class TextProcessor {
 	private String summary;
 	private List<String> imageUrls;
 	private HashMap<String, Float> keywordRelevance = new HashMap<String, Float>();
+	private String names = "";
 	
 	public HashMap<String, Float> getKeywordRelevance() {
 		return keywordRelevance;
@@ -37,8 +39,6 @@ public class TextProcessor {
 		this.summary = summary;
 	}
 
-	private List<String> names = null;
-	
 	public List<String> getSentences() {
 		return sentences;
 	}
@@ -58,7 +58,7 @@ public class TextProcessor {
 		return text;
 	}
 
-	public List<String> getNames() {
+	public String getNames() {
 		return names;
 	}
 
@@ -114,9 +114,20 @@ public class TextProcessor {
 		return syllableCount;
 	}
 	
-	private List<String> parseNames (String[] tokens){
+	private String parseNames (String[] tokens){
 
-		return NameFinder.findNames(tokens);
+		List<String> namesList = NameFinder.findNames(tokens);
+		StringBuilder names = new StringBuilder();
+		
+		for (int i = 0; i < namesList.size(); i++) {
+			
+			names.append(namesList.get(i));
+			
+			if(i != namesList.size() - 1)
+				names.append(", ");
+		}
+		
+		return names.toString();
 		
 	}
 

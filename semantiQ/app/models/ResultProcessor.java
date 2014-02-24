@@ -32,6 +32,7 @@ public class ResultProcessor {
 	public Semantics getSemantics (String text){
 		
 		Semantics semantics = new Semantics();
+		
 		HashMap<ReadablityIndexFactory.ReadablityIndex, Double> map = this.getIndexesResult(text);
 		this.populateIndexScores(map, semantics);
 		this.populateStats(text, semantics);
@@ -105,8 +106,6 @@ public class ResultProcessor {
 		
 		median = indexScores.get(2);
 		
-//		System.out.println(indexScores.toString() + "Median: " + median);
-		
 		if (median == 1)
 			overallDifficultyLevel = "Novice";
 		else if (median == 2)
@@ -151,12 +150,11 @@ public class ResultProcessor {
 	
 	private void populateStats(String text, Semantics semantics) {
 		TextProcessor processor = new TextProcessor(text);
-		List<String> names = processor.getNames();
 		semantics.setText(processor.getText());
 		semantics.setSummary(processor.getSummary());
 		semantics.setNumOfWords(processor.getTokens().length);
 		semantics.setNumOfSentences(processor.getSentences().size());
-		semantics.setNames(names.toString());
+		semantics.setNames(processor.getNames());
 		semantics.setKeywordRelevance(processor.getKeywordRelevance());
 		
 		//Send only the top ten keywords as per relevance sorting
@@ -204,8 +202,6 @@ public class ResultProcessor {
 			
 			}//if
 		}//for
-		
-//		System.out.println(">>>> urls" + urls);
 		
 		semantics.setImagesUrl(urls);
 	}

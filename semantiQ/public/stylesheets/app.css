@@ -48,6 +48,11 @@
 	font-size: 1.18em; 
 }
 
+.rawrule
+{
+	color: #1E90FF; 
+	font-size: 1.18em; 
+}
 /* -----------------------------------------
    Page Name 1
 ----------------------------------------- */
@@ -60,7 +65,7 @@
 }
 .container .header {
     
-    color: blue; 
+    color: #1E90FF; 
 	font-family: Trebuchet MS;
 	font-weight: 300; 
 	font-size: 1.25em;  
